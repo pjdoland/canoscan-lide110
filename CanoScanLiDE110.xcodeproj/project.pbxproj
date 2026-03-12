@@ -1,0 +1,414 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		10EAB39B62936538AEC4858D /* CanoScanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15359735B200FFC44BF08FBC /* CanoScanApp.swift */; };
+		4F0B532236F197B4F3A46391 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E552E0853535AF09A73F29AF /* ContentView.swift */; };
+		5B4CEBF4178B10AECB603CEC /* ScannerKit in Frameworks */ = {isa = PBXBuildFile; productRef = A783310641659398E926B415 /* ScannerKit */; };
+		69006139B5828DC70D9D3FA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32062E9BD85C6E595EC7EB95 /* Assets.xcassets */; };
+		9E5B48B874E27E3C9C6BAB09 /* ScanSettingsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D71838AD52D3354F54D482 /* ScanSettingsPanel.swift */; };
+		A325E91153861B4D6E11EBCA /* ScanPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856C8310EE8FC051E42AFB0E /* ScanPreviewView.swift */; };
+		A79FAD65B8E78E516A19510E /* ScanProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CCF1F98649F3775419F0B4 /* ScanProgressView.swift */; };
+		AE82002C65342C8B1F4F12E9 /* SetupGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8B1BC2B4E022A49FEBC9AB /* SetupGuideView.swift */; };
+		D172D806409CBE2F559FF526 /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445561497289BC6D6BD4DAF /* ScannerViewModel.swift */; };
+		E51CA749F1909222F5AC4F5A /* DocumentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8791B79D7BA57EF7D8D4E18 /* DocumentListView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		033216F7E8CABE833AD2C3D0 /* CanoScanLiDE110.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanoScanLiDE110.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		15359735B200FFC44BF08FBC /* CanoScanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanoScanApp.swift; sourceTree = "<group>"; };
+		32062E9BD85C6E595EC7EB95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5E8B1BC2B4E022A49FEBC9AB /* SetupGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupGuideView.swift; sourceTree = "<group>"; };
+		62D71838AD52D3354F54D482 /* ScanSettingsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSettingsPanel.swift; sourceTree = "<group>"; };
+		818662B854AD686E1C778129 /* ScannerKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ScannerKit; path = ScannerKit; sourceTree = SOURCE_ROOT; };
+		8445561497289BC6D6BD4DAF /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModel.swift; sourceTree = "<group>"; };
+		856C8310EE8FC051E42AFB0E /* ScanPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPreviewView.swift; sourceTree = "<group>"; };
+		A6CCF1F98649F3775419F0B4 /* ScanProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanProgressView.swift; sourceTree = "<group>"; };
+		E552E0853535AF09A73F29AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F8791B79D7BA57EF7D8D4E18 /* DocumentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		658AC714EB6A88903E859260 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B4CEBF4178B10AECB603CEC /* ScannerKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21EDDEE7273BCD23A1079451 = {
+			isa = PBXGroup;
+			children = (
+				D2DD8B7593CFBAC170839057 /* CanoScanLiDE110 */,
+				EEFE16E9A3F33536F2E17D6F /* Packages */,
+				BFC7DF932389990487549389 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		63C4DCD25F4B4CBAC7ABD1A5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8445561497289BC6D6BD4DAF /* ScannerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8BA56645A799BB5AF50A98CF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				15359735B200FFC44BF08FBC /* CanoScanApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BFC7DF932389990487549389 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				033216F7E8CABE833AD2C3D0 /* CanoScanLiDE110.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2DD8B7593CFBAC170839057 /* CanoScanLiDE110 */ = {
+			isa = PBXGroup;
+			children = (
+				8BA56645A799BB5AF50A98CF /* App */,
+				EFAB99EA051346B865E9D8A6 /* Resources */,
+				63C4DCD25F4B4CBAC7ABD1A5 /* ViewModels */,
+				DDD14E48C2BEB7CE07D960D9 /* Views */,
+			);
+			path = CanoScanLiDE110;
+			sourceTree = "<group>";
+		};
+		DDD14E48C2BEB7CE07D960D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E552E0853535AF09A73F29AF /* ContentView.swift */,
+				F8791B79D7BA57EF7D8D4E18 /* DocumentListView.swift */,
+				856C8310EE8FC051E42AFB0E /* ScanPreviewView.swift */,
+				A6CCF1F98649F3775419F0B4 /* ScanProgressView.swift */,
+				62D71838AD52D3354F54D482 /* ScanSettingsPanel.swift */,
+				5E8B1BC2B4E022A49FEBC9AB /* SetupGuideView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EEFE16E9A3F33536F2E17D6F /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				818662B854AD686E1C778129 /* ScannerKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		EFAB99EA051346B865E9D8A6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				32062E9BD85C6E595EC7EB95 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		10EC9C999FEAF676B94A52E3 /* CanoScanLiDE110 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2EE96293A4D77433E64F3797 /* Build configuration list for PBXNativeTarget "CanoScanLiDE110" */;
+			buildPhases = (
+				F7FFD16A16C930C59951186C /* Sources */,
+				74B24EC88BC0BE8DF4F0B698 /* Resources */,
+				658AC714EB6A88903E859260 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CanoScanLiDE110;
+			packageProductDependencies = (
+				A783310641659398E926B415 /* ScannerKit */,
+			);
+			productName = CanoScanLiDE110;
+			productReference = 033216F7E8CABE833AD2C3D0 /* CanoScanLiDE110.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A527326CF9C5F33990CAC67E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 2D900357DFC7352DA4FCD76F /* Build configuration list for PBXProject "CanoScanLiDE110" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 21EDDEE7273BCD23A1079451;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F4CAE4B94B16FE4F6AB90268 /* XCLocalSwiftPackageReference "ScannerKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = BFC7DF932389990487549389 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				10EC9C999FEAF676B94A52E3 /* CanoScanLiDE110 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		74B24EC88BC0BE8DF4F0B698 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69006139B5828DC70D9D3FA6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F7FFD16A16C930C59951186C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10EAB39B62936538AEC4858D /* CanoScanApp.swift in Sources */,
+				4F0B532236F197B4F3A46391 /* ContentView.swift in Sources */,
+				E51CA749F1909222F5AC4F5A /* DocumentListView.swift in Sources */,
+				A325E91153861B4D6E11EBCA /* ScanPreviewView.swift in Sources */,
+				A79FAD65B8E78E516A19510E /* ScanProgressView.swift in Sources */,
+				9E5B48B874E27E3C9C6BAB09 /* ScanSettingsPanel.swift in Sources */,
+				D172D806409CBE2F559FF526 /* ScannerViewModel.swift in Sources */,
+				AE82002C65342C8B1F4F12E9 /* SetupGuideView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		31E60F5980349D982853D246 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		85068CEBFCAF4C3CFF8DB85E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "CanoScan LiDE 110";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.canoscan.lide110;
+				PRODUCT_NAME = "CanoScan LiDE 110";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		8C370EB14F07A228FE05E01B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "CanoScan LiDE 110";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.canoscan.lide110;
+				PRODUCT_NAME = "CanoScan LiDE 110";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		EE3FE98A02DD517DD25A0D8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D900357DFC7352DA4FCD76F /* Build configuration list for PBXProject "CanoScanLiDE110" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE3FE98A02DD517DD25A0D8C /* Debug */,
+				31E60F5980349D982853D246 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2EE96293A4D77433E64F3797 /* Build configuration list for PBXNativeTarget "CanoScanLiDE110" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85068CEBFCAF4C3CFF8DB85E /* Debug */,
+				8C370EB14F07A228FE05E01B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		F4CAE4B94B16FE4F6AB90268 /* XCLocalSwiftPackageReference "ScannerKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ScannerKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A783310641659398E926B415 /* ScannerKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ScannerKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A527326CF9C5F33990CAC67E /* Project object */;
+}
