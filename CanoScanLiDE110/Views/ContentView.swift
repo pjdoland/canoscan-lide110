@@ -22,7 +22,7 @@ struct ContentView: View {
                 .navigationSplitViewColumnWidth(min: 160, ideal: 200, max: 280)
         } detail: {
             ZStack {
-                ScanPreviewView()
+                ScanAreaSelectionView()
 
                 if viewModel.state == .scanning {
                     ScanProgressView()

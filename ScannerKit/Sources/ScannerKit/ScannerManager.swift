@@ -28,11 +28,21 @@ public actor ScannerManager {
             throw ScanError.saneNotInstalled
         }
 
-        let arguments = [
+        var arguments = [
             "--format=tiff",
             "--resolution=\(settings.resolution)",
             "--mode=\(settings.colorMode.rawValue)",
         ]
+
+        let area = settings.scanArea
+        if !area.isFullPage {
+            arguments.append(contentsOf: [
+                "-l", String(format: "%.1f", area.left),
+                "-t", String(format: "%.1f", area.top),
+                "-x", String(format: "%.1f", area.width),
+                "-y", String(format: "%.1f", area.height),
+            ])
+        }
 
         let result = try await runner.run(
             executablePath: path,

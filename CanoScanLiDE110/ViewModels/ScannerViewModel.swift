@@ -8,9 +8,11 @@ struct ScannedPage: Identifiable {
     let id = UUID()
     let tiffData: Data
     let thumbnail: NSImage
+    let scanArea: ScanArea
 
-    init(tiffData: Data) throws {
+    init(tiffData: Data, scanArea: ScanArea) throws {
         self.tiffData = tiffData
+        self.scanArea = scanArea
         guard let image = NSImage(data: tiffData) else {
             throw ScanError.imageConversionFailed("Cannot create thumbnail")
         }
@@ -53,6 +55,10 @@ final class ScannerViewModel: ObservableObject {
         selectedPage?.thumbnail
     }
 
+    var lastScanArea: ScanArea? {
+        selectedPage?.scanArea
+    }
+
     var canScan: Bool {
         state != .scanning && saneInstalled && scannerDetected
     }
@@ -77,8 +83,9 @@ final class ScannerViewModel: ObservableObject {
         state = .scanning
 
         do {
+            let scanArea = settings.scanArea
             let tiffData = try await scanner.scan(settings: settings)
-            let page = try ScannedPage(tiffData: tiffData)
+            let page = try ScannedPage(tiffData: tiffData, scanArea: scanArea)
             pages.append(page)
             selectedPageID = page.id
             state = .idle
@@ -153,6 +160,18 @@ final class ScannerViewModel: ObservableObject {
         case .jpeg: return .jpeg
         case .tiff: return .tiff
         case .pdf: return .pdf
+        }
+    }
+
+    // MARK: - Scan Area
+
+    var currentPreset: ScanAreaPreset {
+        ScanAreaPreset.matching(settings.scanArea)
+    }
+
+    func applyPreset(_ preset: ScanAreaPreset) {
+        if let area = preset.scanArea {
+            settings.scanArea = area
         }
     }
 
