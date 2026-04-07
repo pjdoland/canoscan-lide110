@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ScanSettingsPanel: View {
     @EnvironmentObject var viewModel: ScannerViewModel
+    @State private var showAdvancedSettings = false
 
     var body: some View {
         HStack(spacing: 12) {
@@ -20,19 +21,15 @@ struct ScanSettingsPanel: View {
             }
             .frame(width: 120)
 
-            Picker("Mode", selection: $viewModel.settings.colorMode) {
-                ForEach(ColorMode.allCases) { mode in
-                    Text(mode.displayName).tag(mode)
-                }
+            Button {
+                showAdvancedSettings.toggle()
+            } label: {
+                Label("Settings", systemImage: "slider.horizontal.3")
             }
-            .frame(width: 130)
-
-            Picker("Format", selection: $viewModel.settings.outputFormat) {
-                ForEach(OutputFormat.allCases) { format in
-                    Text(format.displayName).tag(format)
-                }
+            .popover(isPresented: $showAdvancedSettings) {
+                AdvancedSettingsPopover()
+                    .environmentObject(viewModel)
             }
-            .frame(width: 100)
         }
     }
 

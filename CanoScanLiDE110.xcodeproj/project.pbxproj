@@ -11,6 +11,7 @@
 		4F0B532236F197B4F3A46391 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E552E0853535AF09A73F29AF /* ContentView.swift */; };
 		5B4CEBF4178B10AECB603CEC /* ScannerKit in Frameworks */ = {isa = PBXBuildFile; productRef = A783310641659398E926B415 /* ScannerKit */; };
 		69006139B5828DC70D9D3FA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32062E9BD85C6E595EC7EB95 /* Assets.xcassets */; };
+		6F1C373D9BC3D0735D77A298 /* AdvancedSettingsPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CCE26684E3392AB1D38A5C /* AdvancedSettingsPopover.swift */; };
 		9E5B48B874E27E3C9C6BAB09 /* ScanSettingsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D71838AD52D3354F54D482 /* ScanSettingsPanel.swift */; };
 		A325E91153861B4D6E11EBCA /* ScanPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856C8310EE8FC051E42AFB0E /* ScanPreviewView.swift */; };
 		A79FAD65B8E78E516A19510E /* ScanProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CCF1F98649F3775419F0B4 /* ScanProgressView.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		033216F7E8CABE833AD2C3D0 /* CanoScanLiDE110.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanoScanLiDE110.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15359735B200FFC44BF08FBC /* CanoScanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanoScanApp.swift; sourceTree = "<group>"; };
+		21CCE26684E3392AB1D38A5C /* AdvancedSettingsPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsPopover.swift; sourceTree = "<group>"; };
 		32062E9BD85C6E595EC7EB95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57590B808105F09F9AD83035 /* ScanAreaSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanAreaSelectionView.swift; sourceTree = "<group>"; };
 		5E8B1BC2B4E022A49FEBC9AB /* SetupGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupGuideView.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		DDD14E48C2BEB7CE07D960D9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				21CCE26684E3392AB1D38A5C /* AdvancedSettingsPopover.swift */,
 				E552E0853535AF09A73F29AF /* ContentView.swift */,
 				F8791B79D7BA57EF7D8D4E18 /* DocumentListView.swift */,
 				57590B808105F09F9AD83035 /* ScanAreaSelectionView.swift */,
@@ -193,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F1C373D9BC3D0735D77A298 /* AdvancedSettingsPopover.swift in Sources */,
 				10EAB39B62936538AEC4858D /* CanoScanApp.swift in Sources */,
 				4F0B532236F197B4F3A46391 /* ContentView.swift in Sources */,
 				E51CA749F1909222F5AC4F5A /* DocumentListView.swift in Sources */,

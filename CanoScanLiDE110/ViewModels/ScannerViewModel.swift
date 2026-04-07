@@ -42,6 +42,8 @@ final class ScannerViewModel: ObservableObject {
     @Published var settings = ScanSettings()
     @Published var scannerDetected = false
     @Published var saneInstalled = false
+    @Published var previewNSImage: NSImage?
+    @Published var isPreviewing = false
 
     private let scanner = ScannerManager()
     private let converter = ImageConverter()
@@ -51,7 +53,7 @@ final class ScannerViewModel: ObservableObject {
         return pages.first { $0.id == id }
     }
 
-    var previewImage: NSImage? {
+    var selectedPageImage: NSImage? {
         selectedPage?.thumbnail
     }
 
@@ -60,7 +62,7 @@ final class ScannerViewModel: ObservableObject {
     }
 
     var canScan: Bool {
-        state != .scanning && saneInstalled && scannerDetected
+        state != .scanning && !isPreviewing && saneInstalled && scannerDetected
     }
 
     // MARK: - Scanner Detection
@@ -81,6 +83,7 @@ final class ScannerViewModel: ObservableObject {
     func scan() async {
         guard canScan else { return }
         state = .scanning
+        previewNSImage = nil
 
         do {
             let scanArea = settings.scanArea
@@ -103,7 +106,34 @@ final class ScannerViewModel: ObservableObject {
         state = .idle
     }
 
+    // MARK: - Preview
+
+    func scanPreview() async {
+        guard canScan else { return }
+        isPreviewing = true
+        defer { isPreviewing = false }
+        do {
+            let tiffData = try await scanner.preview()
+            previewNSImage = NSImage(data: tiffData)
+        } catch is CancellationError {
+            // Cancelled — no action needed
+        } catch {
+            state = .error("Preview failed: \(error.localizedDescription)")
+        }
+    }
+
+    func autoCropFromPreview() {
+        guard let image = previewNSImage else { return }
+        if let area = AutoCropper.detectDocumentBounds(in: image) {
+            settings.scanArea = area
+        }
+    }
+
     // MARK: - Page Management
+
+    func movePage(from source: IndexSet, to destination: Int) {
+        pages.move(fromOffsets: source, toOffset: destination)
+    }
 
     func removePage(_ page: ScannedPage) {
         pages.removeAll { $0.id == page.id }

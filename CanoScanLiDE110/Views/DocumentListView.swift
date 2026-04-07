@@ -26,6 +26,9 @@ struct DocumentListView: View {
                         }
                     }
                 }
+                .onMove { source, destination in
+                    viewModel.movePage(from: source, to: destination)
+                }
             } header: {
                 HStack {
                     Text("Pages (\(viewModel.pages.count))")

@@ -34,7 +34,8 @@ struct ContentView: View {
                 Button {
                     Task { await viewModel.scan() }
                 } label: {
-                    Label("Scan", systemImage: "scanner")
+                    Label(viewModel.pages.isEmpty ? "Scan" : "Scan Page \(viewModel.pages.count + 1)",
+                          systemImage: "scanner")
                 }
                 .disabled(!viewModel.canScan)
                 .help("Scan a page (⌘↩)")

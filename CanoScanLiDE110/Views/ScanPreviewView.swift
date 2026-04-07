@@ -8,9 +8,8 @@ struct ScanPreviewView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            if let image = viewModel.previewImage {
-                let nsImage = image
-                Image(nsImage: nsImage)
+            if let image = viewModel.selectedPageImage {
+                Image(nsImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .scaleEffect(zoomScale)

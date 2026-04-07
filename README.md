@@ -84,20 +84,32 @@ You only need to do this once.
 
 1. Launch the app. If SANE is installed and the scanner is connected, you'll see the main interface. Otherwise, the app shows a setup guide.
 2. Configure your scan settings in the toolbar:
+   - **Area**: Full Page (default), Letter, A4, 4x6 Photo, 5x7 Photo, or Custom
    - **DPI**: 75, 150, 300 (default), 600, 1200, or 2400
-   - **Mode**: Color, Grayscale, or Black & White
-   - **Format**: PNG (default), JPEG, TIFF, or PDF
+   - Click the **settings icon** (sliders) for additional options: Color Mode, Bit Depth (8 or 16-bit), Brightness, Contrast, and Output Format
 3. Click the **Scan** button in the toolbar, or press **Cmd+Return**
 4. Wait for the scan to complete. A progress overlay appears with a Cancel button.
 
+### Preview and Scan Area Selection
+
+The main view shows a representation of the scanner bed. You can select a sub-region to scan instead of the full glass:
+
+- Click **Preview** at the bottom of the bed to do a quick 75 DPI scan and see what is on the glass
+- **Drag** anywhere on the bed to draw a new selection area
+- **Drag inside** the selection to move it, or **drag the handles** on corners and edges to resize
+- **Double-click** the bed to reset to full page
+- Click **Auto-Crop** (appears after a preview) to automatically detect and snap the selection to document edges
+- Choose a preset size from the **Area** picker in the toolbar
+
 ### Multi-Page Scanning
 
-Each scan appends a new page to the sidebar on the left. This lets you scan multiple pages for a single document:
+Each scan appends a new page to the sidebar on the left. The Scan button shows the next page number (e.g., "Scan Page 2") so you can build multi-page documents:
 
 1. Place the first page on the scanner and press Cmd+Return
 2. Replace with the next page and press Cmd+Return again
 3. Repeat for all pages
-4. Export as a single multi-page PDF (see below)
+4. Drag pages in the sidebar to reorder them if needed
+5. Export as a single multi-page PDF (see below)
 
 Click any page thumbnail in the sidebar to preview it. Right-click a page to delete it.
 
@@ -121,7 +133,7 @@ You can also access both export options from the export button (arrow icon) in t
 The app does not communicate with the scanner directly. Instead, it runs `scanimage` (installed by `brew install sane-backends`) as a subprocess:
 
 1. **Detection**: Runs `scanimage -L` to check if the scanner is connected
-2. **Scanning**: Runs `scanimage --format=tiff --resolution=300 --mode=Color` (etc.) and captures the raw TIFF data from stdout
+2. **Scanning**: Runs `scanimage --format=tiff --resolution=300 --mode=Color` (plus area, brightness, contrast, and depth options as needed) and captures the raw TIFF data from stdout
 3. **Conversion**: Converts the TIFF to your chosen output format using AppKit and PDFKit — no extra dependencies needed
 
 This subprocess approach is intentional. If the USB communication has issues (which can happen with scanner drivers), only the `scanimage` process is affected — the app itself stays responsive and you can cancel and retry.
@@ -144,8 +156,10 @@ canoscan-lide110/
 │   │   └── CanoScanApp.swift              # App entry point
 │   ├── Views/
 │   │   ├── ContentView.swift              # Main layout
+│   │   ├── ScanAreaSelectionView.swift    # Interactive scan area on bed
 │   │   ├── ScanPreviewView.swift          # Zoomable image preview
-│   │   ├── ScanSettingsPanel.swift        # DPI, mode, format pickers
+│   │   ├── ScanSettingsPanel.swift        # Toolbar settings pickers
+│   │   ├── AdvancedSettingsPopover.swift   # Popover for image adjustments
 │   │   ├── ScanProgressView.swift         # Scanning overlay
 │   │   ├── DocumentListView.swift         # Page thumbnail sidebar
 │   │   └── SetupGuideView.swift           # Dependency install guide
@@ -157,8 +171,9 @@ canoscan-lide110/
         ├── ScannerManager.swift           # Device detection + scanning
         ├── ProcessRunner.swift            # Async subprocess wrapper
         ├── SANEPathResolver.swift         # Homebrew path detection
-        ├── ScanParameters.swift           # Settings types
+        ├── ScanParameters.swift           # Settings and scan area types
         ├── ImageConverter.swift           # TIFF to PNG/JPEG/PDF
+        ├── AutoCropper.swift              # Document edge detection
         └── Errors.swift                   # Error types
 ```
 

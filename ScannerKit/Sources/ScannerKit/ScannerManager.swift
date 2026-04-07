@@ -44,11 +44,40 @@ public actor ScannerManager {
             ])
         }
 
+        if settings.brightness != 0 {
+            arguments.append("--brightness=\(settings.brightness)")
+        }
+        if settings.contrast != 0 {
+            arguments.append("--contrast=\(settings.contrast)")
+        }
+        if settings.bitDepth != 8 {
+            arguments.append("--depth=\(settings.bitDepth)")
+        }
+
         let result = try await runner.run(
             executablePath: path,
             arguments: arguments
         )
+        return try validateResult(result)
+    }
 
+    /// Performs a quick low-resolution preview scan of the full bed.
+    public func preview() async throws -> Data {
+        guard let path = SANEPathResolver.scanimagePath() else {
+            throw ScanError.saneNotInstalled
+        }
+        let result = try await runner.run(
+            executablePath: path,
+            arguments: [
+                "--format=tiff",
+                "--resolution=75",
+                "--mode=Color",
+            ]
+        )
+        return try validateResult(result)
+    }
+
+    private func validateResult(_ result: ProcessResult) throws -> Data {
         guard result.exitCode == 0 else {
             if result.stderr.contains("no SANE devices found") ||
                result.stderr.contains("device not found") {
@@ -56,11 +85,9 @@ public actor ScannerManager {
             }
             throw ScanError.processFailure(exitCode: result.exitCode, stderr: result.stderr)
         }
-
         guard !result.stdout.isEmpty else {
             throw ScanError.noImageData
         }
-
         return result.stdout
     }
 

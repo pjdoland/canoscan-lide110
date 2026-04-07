@@ -7,6 +7,7 @@ struct ScanAreaSelectionView: View {
     @State private var dragStart: CGPoint = .zero
 
     private let handleSize: CGFloat = 8
+    private let handleHitRadius: CGFloat = 12
     private let minSelectionPx: CGFloat = 20
 
     var body: some View {
@@ -25,6 +26,44 @@ struct ScanAreaSelectionView: View {
 
                 // Selection border and handles
                 selectionChrome(bedRect: bedRect)
+
+                // Floating action buttons at bottom of bed
+                VStack {
+                    Spacer()
+                    HStack(spacing: 8) {
+                        Button {
+                            Task { await viewModel.scanPreview() }
+                        } label: {
+                            Label("Preview", systemImage: "eye")
+                        }
+                        .disabled(!viewModel.canScan)
+
+                        if viewModel.previewNSImage != nil {
+                            Button {
+                                viewModel.autoCropFromPreview()
+                            } label: {
+                                Label("Auto-Crop", systemImage: "crop")
+                            }
+                        }
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.small)
+                    .padding(.bottom, 12)
+                }
+                .frame(maxWidth: .infinity)
+
+                // Previewing overlay
+                if viewModel.isPreviewing {
+                    Color.black.opacity(0.3)
+                    VStack(spacing: 12) {
+                        ProgressView()
+                            .scaleEffect(1.2)
+                        Text("Previewing...")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             }
             .gesture(dragGesture(bedRect: bedRect))
             .onTapGesture(count: 2) {
@@ -44,8 +83,16 @@ struct ScanAreaSelectionView: View {
             .offset(x: bedRect.minX, y: bedRect.minY)
             .shadow(color: .black.opacity(0.15), radius: 3, x: 0, y: 1)
 
+        // Preview image covers entire bed (full-bed 75 DPI scan)
+        if let previewImg = viewModel.previewNSImage {
+            Image(nsImage: previewImg)
+                .resizable()
+                .frame(width: bedRect.width, height: bedRect.height)
+                .offset(x: bedRect.minX, y: bedRect.minY)
+        }
+
         // Scanned image placed at the area it was scanned from
-        if let image = viewModel.previewImage {
+        if let image = viewModel.selectedPageImage {
             let imageArea = viewModel.lastScanArea ?? ScanArea()
             let scaleX = bedRect.width / ScanArea.bedWidth
             let scaleY = bedRect.height / ScanArea.bedHeight
@@ -153,10 +200,9 @@ struct ScanAreaSelectionView: View {
     }
 
     private func hitTestHandle(at point: CGPoint, selRect: CGRect) -> HandlePosition? {
-        let threshold: CGFloat = 12
         for handle in HandlePosition.allCases {
             let hp = handlePoint(handle, in: selRect)
-            if abs(point.x - hp.x) < threshold && abs(point.y - hp.y) < threshold {
+            if abs(point.x - hp.x) < handleHitRadius && abs(point.y - hp.y) < handleHitRadius {
                 return handle
             }
         }

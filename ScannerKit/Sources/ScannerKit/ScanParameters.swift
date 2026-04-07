@@ -104,18 +104,28 @@ public struct ScanSettings: Sendable {
     public var colorMode: ColorMode
     public var outputFormat: OutputFormat
     public var scanArea: ScanArea
+    public var brightness: Int
+    public var contrast: Int
+    public var bitDepth: Int
 
     public static let availableResolutions = [75, 150, 300, 600, 1200, 2400]
+    public static let availableBitDepths = [8, 16]
 
     public init(
         resolution: Int = 300,
         colorMode: ColorMode = .color,
         outputFormat: OutputFormat = .png,
-        scanArea: ScanArea = ScanArea()
+        scanArea: ScanArea = ScanArea(),
+        brightness: Int = 0,
+        contrast: Int = 0,
+        bitDepth: Int = 8
     ) {
         self.resolution = resolution
         self.colorMode = colorMode
         self.outputFormat = outputFormat
         self.scanArea = scanArea
+        self.brightness = brightness
+        self.contrast = contrast
+        self.bitDepth = bitDepth
     }
 }
