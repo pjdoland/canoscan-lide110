@@ -13,6 +13,7 @@ struct ScanAreaSelectionView: View {
     var body: some View {
         GeometryReader { geometry in
             let bedRect = bedRect(in: geometry.size)
+            let selRect = selectionRect(in: bedRect)
 
             ZStack(alignment: .topLeading) {
                 // Background
@@ -22,35 +23,32 @@ struct ScanAreaSelectionView: View {
                 bedContent(bedRect: bedRect)
 
                 // Dimming overlay outside selection
-                selectionOverlay(bedRect: bedRect)
+                selectionOverlay(bedRect: bedRect, selRect: selRect)
 
                 // Selection border and handles
-                selectionChrome(bedRect: bedRect)
+                selectionChrome(bedRect: bedRect, selRect: selRect)
 
-                // Floating action buttons at bottom of bed
-                VStack {
-                    Spacer()
-                    HStack(spacing: 8) {
+                // Floating action buttons below the bed
+                HStack(spacing: 8) {
+                    Button {
+                        Task { await viewModel.scanPreview() }
+                    } label: {
+                        Label("Preview", systemImage: "eye")
+                    }
+                    .disabled(!viewModel.canScan)
+
+                    if viewModel.previewNSImage != nil {
                         Button {
-                            Task { await viewModel.scanPreview() }
+                            viewModel.autoCropFromPreview()
                         } label: {
-                            Label("Preview", systemImage: "eye")
-                        }
-                        .disabled(!viewModel.canScan)
-
-                        if viewModel.previewNSImage != nil {
-                            Button {
-                                viewModel.autoCropFromPreview()
-                            } label: {
-                                Label("Auto-Crop", systemImage: "crop")
-                            }
+                            Label("Auto-Crop", systemImage: "crop")
                         }
                     }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
-                    .padding(.bottom, 12)
                 }
-                .frame(maxWidth: .infinity)
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+                .frame(width: bedRect.width)
+                .offset(x: bedRect.minX, y: bedRect.maxY + 8)
 
                 // Previewing overlay
                 if viewModel.isPreviewing {
@@ -113,9 +111,7 @@ struct ScanAreaSelectionView: View {
     // MARK: - Selection Overlay
 
     @ViewBuilder
-    private func selectionOverlay(bedRect: CGRect) -> some View {
-        let selRect = selectionRect(in: bedRect)
-
+    private func selectionOverlay(bedRect: CGRect, selRect: CGRect) -> some View {
         // Dim area outside selection
         Path { path in
             path.addRect(bedRect)
@@ -127,9 +123,7 @@ struct ScanAreaSelectionView: View {
     // MARK: - Selection Chrome
 
     @ViewBuilder
-    private func selectionChrome(bedRect: CGRect) -> some View {
-        let selRect = selectionRect(in: bedRect)
-
+    private func selectionChrome(bedRect: CGRect, selRect: CGRect) -> some View {
         // Dashed border
         Rectangle()
             .stroke(style: StrokeStyle(lineWidth: 1.5, dash: [6, 3]))
@@ -150,14 +144,17 @@ struct ScanAreaSelectionView: View {
 
     // MARK: - Geometry Helpers
 
+    private let buttonBarHeight: CGFloat = 36
+
     private func bedRect(in size: CGSize) -> CGRect {
         let padding: CGFloat = 24
-        let available = CGSize(width: size.width - padding * 2, height: size.height - padding * 2)
+        let available = CGSize(width: size.width - padding * 2,
+                               height: size.height - padding * 2 - buttonBarHeight)
         let scale = min(available.width / ScanArea.bedWidth, available.height / ScanArea.bedHeight)
         let bedW = ScanArea.bedWidth * scale
         let bedH = ScanArea.bedHeight * scale
         let x = (size.width - bedW) / 2
-        let y = (size.height - bedH) / 2
+        let y = (size.height - buttonBarHeight - bedH) / 2
         return CGRect(x: x, y: y, width: bedW, height: bedH)
     }
 
@@ -171,6 +168,10 @@ struct ScanAreaSelectionView: View {
             width: area.width * scaleX,
             height: area.height * scaleY
         )
+    }
+
+    private func minSelectionMM(bedRect: CGRect) -> Double {
+        minSelectionPx / bedRect.width * ScanArea.bedWidth
     }
 
     private func mmFromPoint(_ point: CGPoint, in bedRect: CGRect) -> (x: Double, y: Double) {
@@ -262,7 +263,7 @@ struct ScanAreaSelectionView: View {
         let top = min(s.y, c.y)
         let right = max(s.x, c.x)
         let bottom = max(s.y, c.y)
-        let minMM = minSelectionPx / bedRect.width * ScanArea.bedWidth
+        let minMM = minSelectionMM(bedRect: bedRect)
         viewModel.settings.scanArea = ScanArea(
             left: left,
             top: top,
@@ -283,7 +284,7 @@ struct ScanAreaSelectionView: View {
     private func handleResize(handle: HandlePosition, current: CGPoint, bedRect: CGRect) {
         let mm = mmFromPoint(current, in: bedRect)
         var area = viewModel.settings.scanArea
-        let minMM = minSelectionPx / bedRect.width * ScanArea.bedWidth
+        let minMM = minSelectionMM(bedRect: bedRect)
 
         switch handle {
         case .topLeft:
